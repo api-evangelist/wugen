@@ -1,0 +1,85 @@
+generated: '2026-08-05'
+method: probed
+source: live anonymous probes of https://alloteratx.com/wp-json and https://wugen.com/wp-json
+docs: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
+summary:
+  types: []
+  api_key_in: []
+  oauth2_flows: []
+  anonymous_read: true
+  note: >-
+    Neither the derived OpenAPI nor the live route-discovery documents declare any security scheme,
+    because the read surface catalogued in this repo requires none. The entire wp/v2 content read
+    surface on both hosts — posts, pages, media, categories, tags, comments, search and the
+    type/taxonomy/status discovery documents — is served anonymously over HTTPS with no credential
+    of any kind. `derive-authentication.py` therefore produced no schemes for this provider; that is
+    a true result, not a gap.
+model: no-auth-read / gated-write
+posture: >-
+  Allotera runs stock WordPress core authentication. There is no developer program, no API key
+  issuance, no OAuth authorization server (/.well-known/oauth-authorization-server returns 404 on
+  alloteratx.com and a soft 404 on wugen.com), and no published authentication documentation of the
+  company's own. Write access and the privileged read routes fall back to WordPress's built-in
+  mechanisms — cookie authentication plus an X-WP-Nonce header for same-origin browser sessions, and
+  HTTP Basic with an Application Password for external clients — neither of which is available to a
+  third party without an account on the site.
+observed:
+  anonymous_read_allowed:
+  - route: /wp/v2/posts
+    status: 200
+  - route: /wp/v2/pages
+    status: 200
+  - route: /wp/v2/media
+    status: 200
+  - route: /wp/v2/categories
+    status: 200
+  - route: /wp/v2/tags
+    status: 200
+  - route: /wp/v2/comments
+    status: 200
+  - route: /wp/v2/search
+    status: 200
+  - route: /wp/v2/types
+    status: 200
+  - route: /wp/v2/taxonomies
+    status: 200
+  - route: /wp/v2/statuses
+    status: 200
+  authentication_required:
+  - route: /wp/v2/users
+    status: 401
+    code: rest_user_cannot_view
+    message: Sorry, you are not allowed to list users.
+  - route: /wp/v2/settings
+    status: 401
+    code: rest_forbidden
+  - route: /wp/v2/themes
+    status: 401
+    code: rest_forbidden
+  - route: /wp/v2/plugins
+    status: 401
+    code: rest_forbidden
+  - route: /wp-abilities/v1/abilities
+    status: 401
+    code: rest_forbidden
+    host: alloteratx.com
+    note: >-
+      The WordPress Abilities API namespace is registered on alloteratx.com but its registry is
+      authentication-gated, so the ability set could not be enumerated anonymously. There is no MCP
+      namespace on either host.
+  cors:
+    access_control_allow_headers:
+    - Authorization
+    - X-WP-Nonce
+    - Content-Disposition
+    - Content-MD5
+    - Content-Type
+    access_control_expose_headers:
+    - X-WP-Total
+    - X-WP-TotalPages
+    - Link
+    note: >-
+      The Authorization and X-WP-Nonce entries in Access-Control-Allow-Headers are WordPress core
+      defaults advertising the two supported credential mechanisms; they are not evidence of a
+      credential a third party can obtain.
+schemes: []

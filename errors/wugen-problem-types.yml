@@ -1,0 +1,85 @@
+generated: '2026-08-05'
+method: probed
+source: live error responses from https://alloteratx.com/wp-json/wp/v2
+format: wordpress-rest
+rfc9457: false
+content_type: application/json
+summary: >-
+  The WordPress REST error envelope, captured from real failing calls against the Allotera content
+  API. This is NOT RFC 9457 Problem Details — there is no `type` URI, no `title`, no `detail`, and
+  the media type is application/json rather than application/problem+json. The machine-readable
+  handle is the `code` slug; the HTTP status is duplicated inside `data.status`.
+envelope:
+  code: string — machine-readable error slug
+  message: string — human-readable message, localized to the site language
+  data:
+    status: integer — HTTP status code, duplicated from the status line
+    params: object — optional, per-parameter validation detail on 400s
+problems:
+- status: 404
+  code: rest_no_route
+  title: No matching route
+  message: No route was found matching the URL and request method.
+  remediation: >-
+    Check the path against the namespace index at /wp-json/wp/v2, and check the method — a route
+    that exists for GET may not exist for the method used.
+  observed_at: https://alloteratx.com/wp-json/wp/v2/nonexistent
+- status: 404
+  code: rest_post_invalid_id
+  title: Invalid post ID
+  message: Invalid post ID.
+  remediation: >-
+    The id does not resolve to a published object of that post type. Note this is also returned when
+    the object exists but is not publicly viewable, so it does not distinguish absent from hidden.
+  source_operation: openapi/wugen-allotera-content-openapi.yml#getPost
+  also_applies_to:
+  - getPage
+  - getMediaItem
+  observed_at: https://alloteratx.com/wp-json/wp/v2/posts/999999
+- status: 404
+  code: rest_term_invalid
+  title: Term does not exist
+  message: Term does not exist.
+  remediation: List /wp/v2/categories or /wp/v2/tags and use an id from the response.
+  source_operation: openapi/wugen-allotera-content-openapi.yml#getCategory
+  also_applies_to:
+  - getTag
+  observed_at: https://alloteratx.com/wp-json/wp/v2/categories/999999
+- status: 400
+  code: rest_invalid_param
+  title: Invalid parameter
+  message: 'Invalid parameter(s): per_page'
+  detail: >-
+    data.params carries a per-parameter explanation, e.g. {"per_page": "per_page must be between 1
+    (inclusive) and 100 (inclusive)"}.
+  remediation: Clamp per_page to 1..100; validate enums against the OpenAPI parameter schemas.
+  observed_at: https://alloteratx.com/wp-json/wp/v2/posts?per_page=999
+- status: 400
+  code: rest_post_invalid_page_number
+  title: Page number out of range
+  message: The page number requested is larger than the number of pages available.
+  remediation: >-
+    Read X-WP-TotalPages from the first response and stop paging at that value, or follow the
+    rel="next" Link header until it is absent, rather than paging until an empty array.
+  observed_at: https://alloteratx.com/wp-json/wp/v2/posts?page=9999
+- status: 401
+  code: rest_user_cannot_view
+  title: Not allowed to list users
+  message: Sorry, you are not allowed to list users.
+  remediation: >-
+    The users collection is authentication-gated on this install. There is no public credential; the
+    route is out of reach for third parties.
+  observed_at: https://alloteratx.com/wp-json/wp/v2/users
+- status: 401
+  code: rest_forbidden
+  title: Forbidden
+  message: Sorry, you are not allowed to do that.
+  remediation: >-
+    Generic WordPress permission denial, returned for /wp/v2/settings, /wp/v2/themes, /wp/v2/plugins
+    and /wp-abilities/v1/abilities, and for every write method on the content routes.
+  observed_at: https://alloteratx.com/wp-json/wp/v2/settings
+notes:
+- >-
+  On the legacy wugen.com host, a request to a path outside /wp-json/ does NOT produce any of these
+  envelopes — it returns HTTP 200 with the splash page. Only paths under /wp-json/ produce real REST
+  errors on that host.

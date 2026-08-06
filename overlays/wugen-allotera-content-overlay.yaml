@@ -1,0 +1,90 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Allotera (formerly Wugen) Content API
+  version: 1.0.0
+extends: openapi/wugen-allotera-content-openapi.yml
+x-generated: '2026-08-05'
+x-method: generated
+x-source: API Evangelist enrichment pipeline
+actions:
+- target: $.info
+  update:
+    x-apievangelist-profile: https://apis.io/provider/wugen/
+    x-apievangelist-derived: true
+    x-provider-published-openapi: false
+    x-company-renamed:
+      from: Wugen, Inc.
+      to: Allotera Therapeutics, Inc.
+      announced: '2026-07-08'
+    x-surface-class: cms-content-api
+    x-surface-note: >-
+      This is the WordPress REST content API behind the corporate website, not a product or
+      developer API. Allotera operates no developer program.
+- target: $.info
+  update:
+    x-artifacts:
+      authentication: authentication/wugen-authentication.yml
+      conventions: conventions/wugen-conventions.yml
+      errors: errors/wugen-problem-types.yml
+      lifecycle: lifecycle/wugen-lifecycle.yml
+      data_model: data-model/wugen-data-model.yml
+      examples: examples/wugen-examples.yml
+      conformance: conformance/wugen-conformance.yml
+      well_known: well-known/wugen-well-known.yml
+      domain_security: security/wugen-domain-security.yml
+      agentic_access: agentic-access/wugen-agentic-access.yml
+      skills: skills/_index.yml
+- target: $
+  update:
+    x-conventions:
+      pagination:
+        style: page-number
+        params: [page, per_page]
+        per_page_max: 100
+        total_header: X-WP-Total
+        pages_header: X-WP-TotalPages
+        link_header: RFC 8288 rel="next" / rel="prev"
+      sparse_fieldsets:
+        param: _fields
+      expansion:
+        param: _embed
+      idempotency:
+        supported: false
+      error_envelope:
+        format: wordpress-rest
+        rfc9457: false
+      rate_limits:
+        documented: false
+        note: Wordfence sits in front of this host and may throttle without an advertised contract.
+- target: $.paths['/wp/v2/posts'].get
+  update:
+    x-content-inventory:
+      total_observed: 81
+      observed_on: '2026-08-05'
+      dominant_category: Press Releases
+    x-agent-hint: >-
+      The company news stream. Filter by the categories parameter using ids from getCategories —
+      15 is Press Releases and 14 is Scientific Publications on this install.
+- target: $.paths['/wp/v2/pages'].get
+  update:
+    x-content-inventory:
+      total_observed: 18
+      observed_on: '2026-08-05'
+    x-agent-hint: >-
+      Corporate and patient-facing pages, including pipeline, science, clinical-trials, patients and
+      expanded-access-policy. Slug is the stable handle; fetch with ?slug=<slug>.
+- target: $.paths['/wp/v2/categories'].get
+  update:
+    x-agent-hint: >-
+      Fetch this first. It is the only classification vocabulary on the surface, and post filtering
+      depends on its integer ids.
+- target: $.paths['/wp/v2/search'].get
+  update:
+    x-agent-hint: >-
+      Returns id/title/url/type/subtype only. Resolve each hit through getPost or getPage for the
+      body.
+- target: $.paths['/wp/v2/media'].get
+  update:
+    x-content-inventory:
+      total_observed: 66
+      observed_on: '2026-08-05'

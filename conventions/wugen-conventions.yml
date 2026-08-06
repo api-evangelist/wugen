@@ -1,0 +1,122 @@
+generated: '2026-08-05'
+method: probed
+source: live probes of https://alloteratx.com/wp-json/wp/v2 + openapi/wugen-allotera-content-openapi.yml
+docs: https://developer.wordpress.org/rest-api/using-the-rest-api/
+summary: >-
+  Cross-cutting request/response semantics of the WordPress REST wp/v2 content surface served by
+  alloteratx.com and wugen.com. These are WordPress core conventions, not conventions Allotera
+  authored or documents; they are recorded here because they are what a client actually has to
+  implement against this API. Every value below was observed on a live call, not assumed.
+authentication:
+  style: none-for-read
+  detail: Anonymous HTTPS GET. See authentication/wugen-authentication.yml.
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency key header, parameter or contract exists anywhere on this surface. WordPress core
+    does not implement one and Allotera has added none. The cached read surface is trivially safe to
+    retry because every catalogued operation is a GET, but that is method safety, not an idempotency
+    guarantee — so no Idempotency pointer is emitted for this provider.
+pagination:
+  style: page-number
+  params:
+  - name: page
+    default: 1
+    minimum: 1
+  - name: per_page
+    default: 10
+    minimum: 1
+    maximum: 100
+    note: per_page above 100 returns HTTP 400 rest_invalid_param
+  - name: offset
+    note: alternative to page, supported on collection routes
+  response_headers:
+  - name: X-WP-Total
+    detail: total number of matching resources
+  - name: X-WP-TotalPages
+    detail: total number of pages available
+  link_header: >-
+    RFC 8288 Link header carries rel="next" and rel="prev", e.g.
+    <https://alloteratx.com/wp-json/wp/v2/posts?per_page=1&page=2>; rel="next"
+  overrun: >-
+    Requesting a page beyond the last returns HTTP 400 rest_post_invalid_page_number rather than an
+    empty collection.
+  observed:
+    url: https://alloteratx.com/wp-json/wp/v2/posts?per_page=1
+    x_wp_total: 81
+    x_wp_totalpages: 81
+sparse_fieldsets:
+  supported: true
+  param: _fields
+  detail: Comma-separated allow-list of top-level fields, e.g. _fields=id,slug,title,link.
+expansion:
+  supported: true
+  param: _embed
+  detail: >-
+    Embeds linked resources (author, featured media, terms) into an _embedded object, resolved from
+    the _links HAL-style block present on every resource.
+filtering_and_ordering:
+  params:
+  - search
+  - orderby
+  - order
+  - after
+  - before
+  - modified_after
+  - modified_before
+  - include
+  - exclude
+  - slug
+  - status
+  - categories
+  - categories_exclude
+  - tags
+  - tags_exclude
+  detail: Taken verbatim from the live route-discovery args; see the OpenAPI for the full per-route set.
+hypermedia:
+  supported: true
+  detail: >-
+    Every resource carries a _links object with self / collection / about / author / replies /
+    wp:term relations, and search results carry embeddable self links. This is the closest thing the
+    surface has to a discovery contract.
+content_negotiation:
+  request: query string only; no request body on any catalogued operation
+  response_content_type: application/json; charset=UTF-8
+  method_override: supported by WordPress via X-HTTP-Method-Override on POST
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  detail: >-
+    The version is a route namespace, not a header or date. wp/v2 has been stable since WordPress
+    4.7 (2016). Plugin namespaces on these hosts carry their own independent versions.
+  see: lifecycle/wugen-lifecycle.yml
+error_envelope:
+  format: wordpress-rest
+  rfc9457: false
+  content_type: application/json
+  shape:
+    code: machine-readable error slug
+    message: human-readable message
+    data:
+      status: HTTP status code
+      params: optional per-parameter validation detail
+  see: errors/wugen-problem-types.yml
+rate_limiting:
+  documented: false
+  headers_observed: []
+  detail: >-
+    No rate-limit headers were returned on any probe and no rate-limit policy is published. The
+    hosts sit behind Wordfence (alloteratx.com and wugen.com both register a wordfence/v1
+    namespace), which can throttle or block at its own discretion without an advertised contract, so
+    clients should assume an undocumented ceiling and back off on 429/403.
+tracing:
+  request_id_header: none observed
+caching:
+  detail: >-
+    Responses carry x-robots-tag: noindex. No ETag or Cache-Control freshness contract was observed
+    on the content routes, so conditional requests cannot be relied on.
+cross_links:
+  authentication: authentication/wugen-authentication.yml
+  errors: errors/wugen-problem-types.yml
+  lifecycle: lifecycle/wugen-lifecycle.yml
+  data_model: data-model/wugen-data-model.yml

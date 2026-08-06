@@ -1,0 +1,77 @@
+generated: '2026-08-05'
+method: probed
+source: live GET of the /.well-known/ surface on both provider hosts
+summary: >-
+  Neither alloteratx.com (the current Allotera Therapeutics site) nor wugen.com (the retired Wugen
+  brand domain) serves any /.well-known/ document. No security.txt, no OIDC or OAuth authorization
+  server metadata, no RFC 9727 api-catalog, no ai-plugin.json, and no A2A agent card at either the
+  canonical or the legacy path.
+x-soft-404-warning: >-
+  wugen.com answers HTTP 200 with its 39,987-byte splash page for EVERY unmatched path, including
+  every /.well-known/* path probed. Those 200s are NOT hits. Each response body was hashed and
+  compared against a control probe of https://wugen.com/zzz-does-not-exist-9182, which returned the
+  same status and the identical body (md5 dee8055280e8f8a7f94054062c708359) — so every wugen.com row
+  below is recorded as a soft 404, not a document. alloteratx.com returns honest HTTP 404s.
+hosts:
+- host: https://alloteratx.com
+  role: current corporate site (Allotera Therapeutics)
+  soft_404: false
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/change-password
+    status: 404
+  - path: /.well-known/dnt-policy.txt
+    status: 404
+- host: https://wugen.com
+  role: retired brand domain (splash page + live WordPress REST archive)
+  soft_404: true
+  control_probe:
+    url: https://wugen.com/zzz-does-not-exist-9182
+    status: 200
+    bytes: 39987
+    body_md5: dee8055280e8f8a7f94054062c708359
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    verdict: soft-404
+    body_md5: dee8055280e8f8a7f94054062c708359
+  - path: /.well-known/openid-configuration
+    status: 200
+    verdict: soft-404
+    body_md5: dee8055280e8f8a7f94054062c708359
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    verdict: soft-404
+    body_md5: dee8055280e8f8a7f94054062c708359
+  - path: /.well-known/api-catalog
+    status: 200
+    verdict: soft-404
+    body_md5: dee8055280e8f8a7f94054062c708359
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    verdict: soft-404
+    body_md5: dee8055280e8f8a7f94054062c708359
+  - path: /.well-known/agent-card.json
+    status: 200
+    verdict: soft-404
+    body_md5: dee8055280e8f8a7f94054062c708359
+  - path: /.well-known/agent.json
+    status: 200
+    verdict: soft-404
+    body_md5: dee8055280e8f8a7f94054062c708359
+documents_found: 0
+security_txt: false
+agent_card: false

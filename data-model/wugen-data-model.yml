@@ -1,0 +1,163 @@
+generated: '2026-08-05'
+method: derived
+source: openapi/wugen-allotera-content-openapi.yml + live response bodies from https://alloteratx.com/wp-json/wp/v2
+summary: >-
+  Entity-relationship graph of the Allotera (formerly Wugen) content API, derived from the live
+  route-discovery document and from real response bodies. Every field named below was observed on an
+  actual anonymous response; relationships are read from the integer id-reference fields WordPress
+  places on each resource and from the _links block it emits alongside them.
+id_scheme:
+  style: integer
+  detail: >-
+    All resources use unsigned integer ids from one shared wp_posts / wp_terms sequence — there are
+    no type-prefixed ids, so an id alone does not tell you its entity. Post and page ids observed in
+    the 9400–10100 range; category ids in the 1–16 range.
+entities:
+- name: Post
+  rest_base: posts
+  operations: [getPosts, getPost]
+  count_observed: 81
+  description: >-
+    The company news stream. On this install it carries press releases (59), scientific publications
+    (12), articles (8), careers postings (2) and clinical items (1) — the type is expressed purely
+    through the category taxonomy, not through separate post types.
+  key_fields: [id, date, date_gmt, modified, slug, status, type, link, title.rendered,
+    content.rendered, excerpt.rendered, author, featured_media, categories, tags, format, sticky,
+    class_list, meta, acf]
+- name: Page
+  rest_base: pages
+  operations: [getPages, getPage]
+  count_observed: 18
+  description: >-
+    Hierarchical corporate and patient-facing pages: about-us, science, pipeline,
+    scientific-publications, press-releases, clinical-trials, patients, expanded-access-policy,
+    career-opportunities, contact-us, journey, leadership, board-of-directors, partners, investors,
+    privacy-notice, accessibility and the home page.
+  key_fields: [id, date, modified, slug, status, type, link, title.rendered, content.rendered,
+    excerpt.rendered, author, parent, menu_order, featured_media, template, meta, acf]
+- name: Media
+  rest_base: media
+  operations: [getMediaItems, getMediaItem]
+  count_observed: 66
+  description: >-
+    The media library — leadership headshots, logos, document assets. 269 objects on the legacy
+    wugen.com host.
+  key_fields: [id, slug, title.rendered, alt_text, caption.rendered, description.rendered,
+    media_type, mime_type, source_url, filename, filesize, media_details, post, author]
+- name: Category
+  rest_base: categories
+  operations: [getCategories, getCategory]
+  count_observed: 10
+  description: >-
+    The single taxonomy that actually classifies this content. Observed terms: Articles (8),
+    Business Operations (0), Careers (2), Clinical (1), Press Releases (59), Product Development
+    (0), R&D (0), Regulatory Affairs (0), Scientific Publications (12), Uncategorized (0).
+  key_fields: [id, name, slug, description, count, parent, taxonomy, link, meta, acf]
+- name: Tag
+  rest_base: tags
+  operations: [getTags, getTag]
+  count_observed: 0
+  description: The post_tag taxonomy is registered and readable but empty on both hosts.
+  key_fields: [id, name, slug, description, count, taxonomy, link]
+- name: Comment
+  rest_base: comments
+  operations: [getComments, getComment]
+  count_observed: 0
+  description: >-
+    Registered and anonymously readable on alloteratx.com but empty. The route is not registered at
+    all on the legacy wugen.com host.
+  key_fields: [id, post, parent, author_name, date, content.rendered, status, link]
+- name: Type
+  rest_base: types
+  operations: [getTypes, getType]
+  description: >-
+    Post-type registry. Discovery only — it reveals which rest_base values exist. On this install
+    the content-bearing types are post, page and attachment; the rest (wp_block, wp_template,
+    wp_template_part, wp_global_styles, wp_navigation, wp_font_family, elementor_library,
+    e-floating-buttons, nav_menu_item) are theme/builder machinery, not company content.
+- name: Taxonomy
+  rest_base: taxonomies
+  operations: [getTaxonomies, getTaxonomy]
+  description: Taxonomy registry. Discovery only.
+- name: Status
+  rest_base: statuses
+  operations: [getStatuses, getStatus]
+  description: Post-status registry. Discovery only; anonymously only `publish` is reachable.
+- name: SearchResult
+  rest_base: search
+  operations: [searchSite]
+  description: >-
+    A thin projection over Post and Page, not a stored entity. Returns only id, title, url, type and
+    subtype plus an embeddable self link back to the real resource.
+  key_fields: [id, title, url, type, subtype]
+relationships:
+- from: Post
+  to: Category
+  cardinality: has_many
+  via: categories
+  detail: Array of category ids; the reverse edge is Category.count.
+- from: Post
+  to: Tag
+  cardinality: has_many
+  via: tags
+  detail: Array of tag ids. Always empty on this install.
+- from: Post
+  to: Media
+  cardinality: has_one
+  via: featured_media
+  detail: Integer media id, or 0 when unset.
+- from: Post
+  to: User
+  cardinality: belongs_to
+  via: author
+  detail: >-
+    Integer user id is present on every post, but the User entity itself is unreachable —
+    /wp/v2/users returns HTTP 401. The edge is visible while its target is not.
+- from: Page
+  to: Page
+  cardinality: belongs_to
+  via: parent
+  detail: Self-referential hierarchy; 0 for a top-level page.
+- from: Page
+  to: Media
+  cardinality: has_one
+  via: featured_media
+- from: Page
+  to: User
+  cardinality: belongs_to
+  via: author
+- from: Media
+  to: Post
+  cardinality: belongs_to
+  via: post
+  detail: The post or page the attachment was uploaded to; 0 when unattached.
+- from: Category
+  to: Category
+  cardinality: belongs_to
+  via: parent
+  detail: Hierarchical taxonomy; 0 for a root term.
+- from: Comment
+  to: Post
+  cardinality: belongs_to
+  via: post
+- from: Comment
+  to: Comment
+  cardinality: belongs_to
+  via: parent
+- from: SearchResult
+  to: Post
+  cardinality: has_one
+  via: id
+  detail: Resolve through the embeddable self link in _links, using type/subtype to pick the route.
+traversal_notes:
+- >-
+  _embed on any Post or Page resolves author, featured media and terms in one call, which is the
+  cheapest way to walk this graph.
+- >-
+  The whole content archive can be pulled in a handful of calls: /wp/v2/posts?per_page=100 twice for
+  alloteratx.com, once more for the 80-post wugen.com archive.
+- >-
+  The `acf` field appears on every resource (Advanced Custom Fields) but is empty on every object
+  sampled, so no custom domain model — pipeline programs, trial arms, indications — is exposed
+  through the API. The therapeutic pipeline exists only as rendered HTML on /pipeline/.
+render: null

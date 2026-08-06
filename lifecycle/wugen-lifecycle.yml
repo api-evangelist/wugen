@@ -1,0 +1,69 @@
+generated: '2026-08-05'
+method: probed
+source: live probes of alloteratx.com and wugen.com + public rebrand announcement
+summary: >-
+  Lifecycle posture of the Wugen/Allotera machine-readable surface. The headline event is a company
+  rename, not an API version change: Wugen, Inc. became Allotera Therapeutics, Inc. in July 2026 and
+  moved to alloteratx.com. The API-relevant consequence is that the old brand host still serves its
+  full content archive over HTTP with no deprecation signal of any kind.
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  detail: >-
+    WordPress core route namespace, stable since WordPress 4.7 (2016). Allotera does not version
+    anything itself and publishes no versioning policy.
+  docs: null
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    No RFC 8594 Sunset header, no Deprecation header, and no deprecation policy page on either host.
+    No operation in either derived OpenAPI is marked deprecated.
+domain_migration:
+  event: company rename — Wugen, Inc. to Allotera Therapeutics, Inc.
+  announced: '2026-07-08'
+  from_host: wugen.com
+  to_host: alloteratx.com
+  human_surface: >-
+    wugen.com has been reduced to a single splash page reading "A new era of Allogeneic T-Cell
+    Therapies" with a "Continue to Allotera" link to https://alloteratx.com and a contact address of
+    info@alloteratx.com. /wp/v2/pages on that host returns a total of 1.
+  machine_surface: >-
+    The wugen.com WordPress install is still fully live. /wp/v2/posts still returns 80 posts, /wp/v2/media
+    still returns 269 objects, and /wp/v2/categories still returns 11 terms — the entire historical
+    archive remains machine-readable at https://wugen.com/wp-json/wp/v2 even though it is no longer
+    reachable by navigation.
+  migration_signal: none
+  detail: >-
+    The retired host emits no Sunset header, no 301 redirect to the new domain at the API layer, and
+    no notice in any response body. A consumer that integrated against wugen.com would receive no
+    machine-readable indication that the brand, the company name and the canonical host had all
+    changed. This is the single clearest remediation available to the provider: redirect or
+    Sunset-header the retired host, or state its retirement date in a policy page.
+  content_divergence:
+    alloteratx_posts: 81
+    wugen_posts: 80
+    note: >-
+      The archives are near-identical; alloteratx.com carries one additional post. Category
+      vocabularies differ slightly (10 terms on the new host, 11 on the old) and the media libraries
+      diverge sharply (66 vs 269), so the old host remains the fuller media archive.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page:
+  url: null
+  published: false
+  detail: No status page was found on either host or at any status./uptime. subdomain.
+changelog:
+  url: null
+  api_changelog_published: false
+  detail: >-
+    Allotera publishes a dated press-release stream at https://alloteratx.com/press-releases/, but
+    that is corporate news, not an API changelog, and it is not recorded as a ChangeLog pointer.
+support:
+  url: https://alloteratx.com/contact-us/
+  detail: General corporate contact form. There is no developer support channel.
+deprecated_operations: []

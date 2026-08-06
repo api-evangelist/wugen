@@ -1,0 +1,61 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Wugen Legacy Content API
+  version: 1.0.0
+extends: openapi/wugen-legacy-content-openapi.yml
+x-generated: '2026-08-05'
+x-method: generated
+x-source: API Evangelist enrichment pipeline
+actions:
+- target: $.info
+  update:
+    x-apievangelist-profile: https://apis.io/provider/wugen/
+    x-apievangelist-derived: true
+    x-provider-published-openapi: false
+    x-surface-class: cms-content-api
+    x-surface-status: retired-brand-host-still-serving
+    x-succeeded-by:
+      host: https://alloteratx.com/wp-json/wp/v2
+      openapi: openapi/wugen-allotera-content-openapi.yml
+      reason: Wugen, Inc. renamed to Allotera Therapeutics, Inc. on 2026-07-08.
+- target: $.info
+  update:
+    x-soft-404:
+      applies_to: every path outside /wp-json/ on this host
+      behaviour: HTTP 200 with a 39,987-byte splash page
+      control_probe: https://wugen.com/zzz-does-not-exist-9182
+      control_status: 200
+      control_body_md5: dee8055280e8f8a7f94054062c708359
+      guidance: >-
+        Do not treat a 200 from this host as evidence a document exists. Hash the body and compare
+        against the control probe. Paths under /wp-json/ behave correctly and return real REST
+        errors.
+- target: $.info
+  update:
+    x-deprecation-gap: >-
+      The human-facing site at this host has been decommissioned to a single splash page, but the
+      API surface carries no Sunset header, no Deprecation header, no API-layer redirect to
+      alloteratx.com and no retirement notice. A machine consumer receives no signal that this host
+      is retired. This is the clearest single remediation available to the provider.
+- target: $.paths['/wp/v2/posts'].get
+  update:
+    x-content-inventory:
+      total_observed: 80
+      observed_on: '2026-08-05'
+      note: >-
+        The complete historical Wugen press-release and scientific-publication archive — 58 press
+        releases, 12 scientific publications, 8 articles — still readable here although no page on
+        the live site links to it.
+- target: $.paths['/wp/v2/media'].get
+  update:
+    x-content-inventory:
+      total_observed: 269
+      observed_on: '2026-08-05'
+      note: >-
+        Substantially larger than the 66-object library on alloteratx.com; this host remains the
+        fuller media archive.
+- target: $.paths['/wp/v2/categories'].get
+  update:
+    x-content-inventory:
+      total_observed: 11
+      observed_on: '2026-08-05'

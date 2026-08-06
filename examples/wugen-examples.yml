@@ -1,0 +1,144 @@
+generated: '2026-08-05'
+method: probed
+source: live anonymous responses from https://alloteratx.com/wp-json/wp/v2 on 2026-08-05
+summary: >-
+  Real request/response pairs captured from the Allotera (formerly Wugen) content API. Every payload
+  below was returned by the live host — none is synthesized. Responses are field-trimmed with the
+  _fields parameter for readability; the untrimmed objects carry the full field set listed in
+  data-model/wugen-data-model.yml.
+api: openapi/wugen-allotera-content-openapi.yml
+examples:
+- name: List the most recent post
+  operation: getPosts
+  request:
+    method: GET
+    url: https://alloteratx.com/wp-json/wp/v2/posts?per_page=1&_fields=id,date,slug,link,title,excerpt,categories,type,status
+  response:
+    status: 200
+    headers:
+      X-WP-Total: '81'
+      X-WP-TotalPages: '81'
+      Link: <https://alloteratx.com/wp-json/wp/v2/posts?per_page=1&page=2>; rel="next"
+      Content-Type: application/json; charset=UTF-8
+    body:
+    - id: 9974
+      date: '2026-07-29T11:19:23'
+      slug: director-of-quality
+      status: publish
+      type: post
+      link: https://alloteratx.com/director-of-quality/
+      title:
+        rendered: Director of Quality
+      excerpt:
+        rendered: '<p>Location: Remote (U.S.-based)</p>'
+        protected: false
+      categories:
+      - 8
+- name: List the full category vocabulary
+  operation: getCategories
+  request:
+    method: GET
+    url: https://alloteratx.com/wp-json/wp/v2/categories?per_page=100&_fields=id,slug,name,count
+  response:
+    status: 200
+    body:
+    - {id: 16, count: 8, name: Articles, slug: articles}
+    - {id: 12, count: 0, name: Business Operations, slug: business-operations}
+    - {id: 8, count: 2, name: Careers, slug: careers}
+    - {id: 13, count: 1, name: Clinical, slug: clinical}
+    - {id: 15, count: 59, name: Press Releases, slug: press-releases}
+    - {id: 10, count: 0, name: Product Development, slug: product-development}
+    - {id: 11, count: 0, name: R&amp;D, slug: rd}
+    - {id: 9, count: 0, name: Regulatory Affairs, slug: regulatory-affairs}
+    - {id: 14, count: 12, name: Scientific Publications, slug: scientific-publications}
+    - {id: 1, count: 0, name: Uncategorized, slug: uncategorized}
+- name: Search the site for CAR-T content
+  operation: searchSite
+  request:
+    method: GET
+    url: https://alloteratx.com/wp-json/wp/v2/search?search=CAR-T&per_page=2
+  response:
+    status: 200
+    body:
+    - id: 9835
+      title: Allotera Therapeutics (Formerly Wugen) Closes $35 Million Financing to Advance Off-the-Shelf
+        CAR-T Therapies for T-Cell Cancers
+      url: https://alloteratx.com/allotera-therapeutics-formerly-wugen-closes-35-million-financing-to-advance-off-the-shelf-car-t-therapies-for-t-cell-cancers/
+      type: post
+      subtype: post
+    note: >-
+      Search results carry only id/title/url/type/subtype plus an embeddable self link; fetch the id
+      through getPost to get the body.
+- name: Fetch one media object
+  operation: getMediaItems
+  request:
+    method: GET
+    url: https://alloteratx.com/wp-json/wp/v2/media?per_page=1&_fields=id,slug,media_type,mime_type,source_url,title
+  response:
+    status: 200
+    headers:
+      X-WP-Total: '66'
+    body:
+    - id: 10017
+      slug: lewis_mark_circular_head_and_collar_600
+      title:
+        rendered: Lewis_Mark_circular_head_and_collar_600
+      media_type: image
+      mime_type: image/png
+      source_url: https://alloteratx.com/wp-content/uploads/2026/07/Lewis_Mark_circular_head_and_collar_600.png
+- name: Read the legacy Wugen archive that navigation no longer reaches
+  operation: getPosts
+  api: openapi/wugen-legacy-content-openapi.yml
+  request:
+    method: GET
+    url: https://wugen.com/wp-json/wp/v2/posts?per_page=1&_fields=id,date,slug,title,link,categories
+  response:
+    status: 200
+    headers:
+      X-WP-Total: '80'
+    body:
+    - id: 8590
+      date: '2026-04-02T11:55:05'
+      slug: wugen-selected-for-u-s-fda-chemistry-manufacturing-and-controls-development-and-readiness-pilot-program-to-support-manufacturing-readiness-of-soficabtagene-geleucel
+      title:
+        rendered: Wugen Selected for U.S. FDA Chemistry, Manufacturing, and Controls Development and
+          Readiness Pilot Program to Support Manufacturing Readiness of Soficabtagene Geleucel
+      link: https://wugen.com/wugen-selected-for-u-s-fda-chemistry-manufacturing-and-controls-development-and-readiness-pilot-program-to-support-manufacturing-readiness-of-soficabtagene-geleucel/
+      categories:
+      - 84
+error_examples:
+- name: Unknown route
+  request:
+    method: GET
+    url: https://alloteratx.com/wp-json/wp/v2/nonexistent
+  response:
+    status: 404
+    body:
+      code: rest_no_route
+      message: No route was found matching the URL and request method.
+      data:
+        status: 404
+- name: per_page above the ceiling
+  request:
+    method: GET
+    url: https://alloteratx.com/wp-json/wp/v2/posts?per_page=999
+  response:
+    status: 400
+    body:
+      code: rest_invalid_param
+      message: 'Invalid parameter(s): per_page'
+      data:
+        status: 400
+        params:
+          per_page: per_page must be between 1 (inclusive) and 100 (inclusive)
+- name: Authentication-gated collection
+  request:
+    method: GET
+    url: https://alloteratx.com/wp-json/wp/v2/users
+  response:
+    status: 401
+    body:
+      code: rest_user_cannot_view
+      message: Sorry, you are not allowed to list users.
+      data:
+        status: 401

@@ -1,0 +1,27 @@
+generated: '2026-08-05'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: alloteratx.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 10 22:59:46 2026 GMT
+  hsts: false
+- host: wugen.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 18 19:13:07 2026 GMT
+  hsts: false
+domains:
+- domain: alloteratx.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: wugen.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

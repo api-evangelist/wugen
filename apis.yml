@@ -1,23 +1,163 @@
 aid: wugen
 name: Wugen
-description: 'Wugen is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Wugen, Inc. is a St. Louis, Missouri clinical-stage cell-therapy company founded in
+  2018 out of Washington University in St. Louis that develops off-the-shelf, allogeneic CAR-T and
+  memory NK cell therapies for blood cancers, using CRISPR deletion of the T-cell receptor so cells
+  from healthy donors can be given without graft-versus-host disease. In July 2026 the company
+  renamed itself Allotera Therapeutics, Inc. and moved to alloteratx.com, closing a $35M financing
+  that brought total capital raised to roughly $150M on top of its $115M Series C; its lead program,
+  soficabtagene geleucel (sofi-cel, formerly WU-CART-007), is a CD7-targeted allogeneic CAR-T in a
+  global pivotal study for relapsed or refractory T-cell acute lymphoblastic leukemia and T-cell
+  lymphoblastic lymphoma, holds FDA Breakthrough Therapy designation, and was selected for the FDA
+  CMC Development and Readiness Pilot Program. Wugen/Allotera publishes no product or developer API,
+  no OpenAPI, no llms.txt and no agent card. The only machine-readable surface either domain exposes
+  is the WordPress REST API (wp/v2), anonymously readable on both the current alloteratx.com site
+  and the retired wugen.com brand domain, which still serves the complete historical press-release
+  and scientific-publication archive as JSON even though its human-facing site is now a single
+  splash page.'
 url: https://raw.githubusercontent.com/api-evangelist/wugen/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment-pipeline
+image: https://alloteratx.com/wp-content/uploads/2026/06/Asset-1.svg
 specificationVersion: '0.20'
 created: '2026-08-05'
 modified: '2026-08-05'
 tags:
 - Company
-apis: []
+- Biotechnology
+- Cell Therapy
+- Oncology
+- Life Sciences
+- Pharmaceuticals
+- Clinical Trials
+- CAR-T
+- CRISPR
+- Immunotherapy
+- Research
+- Content
+apis:
+- aid: wugen:allotera-content
+  name: Allotera (formerly Wugen) Content API (WordPress REST wp/v2)
+  description: 'The anonymously readable WordPress REST API that alloteratx.com serves at
+    /wp-json/wp/v2 — the company press-release archive (81 posts), corporate and patient-facing
+    pages (18: pipeline, science, clinical trials, expanded access policy, patients, leadership,
+    board of directors, investors, partners, careers), the media library (66 objects), the category
+    taxonomy (10 terms), comments, the type/taxonomy/status discovery documents and a site-wide
+    search endpoint, all as JSON with page/per_page pagination and X-WP-Total / X-WP-TotalPages
+    response headers. This is the CMS content API, not an Allotera product API; the company
+    publishes no OpenAPI for it, so the definition in this repo was derived mechanically from the
+    live route-discovery document at https://alloteratx.com/wp-json/. Write operations exist on
+    these routes but are authentication-gated, as are /wp/v2/users, /wp/v2/settings, /wp/v2/themes
+    and /wp/v2/plugins, which return HTTP 401 anonymously.'
+  humanURL: https://alloteratx.com/press-releases/
+  baseURL: https://alloteratx.com/wp-json/wp/v2
+  tags:
+  - Content
+  - News
+  - Press Releases
+  - Publications
+  - Search
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/wugen-allotera-content-openapi.yml
+  - type: Overlay
+    url: overlays/wugen-allotera-content-overlay.yaml
+- aid: wugen:legacy-content
+  name: Wugen Legacy Content API (WordPress REST wp/v2)
+  description: 'The anonymously readable WordPress REST API still served from the retired wugen.com
+    brand domain at /wp-json/wp/v2. Although the human-facing wugen.com site was reduced to a single
+    splash page forwarding visitors to alloteratx.com after the July 2026 rename, the underlying
+    WordPress install remains live and continues to serve the complete historical archive as JSON —
+    80 posts (58 press releases, 12 scientific publications, 8 articles, plus careers, clinical and
+    product-development items), 269 media objects and 11 category terms. The archive is therefore
+    still reachable by machine long after it stopped being reachable by navigation. Note that
+    wugen.com answers HTTP 200 with its splash page for every unmatched path — a soft 404 — so path
+    probes against this host must be diffed against a control path before any hit is believed.'
+  humanURL: https://wugen.com/
+  baseURL: https://wugen.com/wp-json/wp/v2
+  tags:
+  - Content
+  - Archive
+  - Press Releases
+  - Publications
+  - Search
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/wugen-legacy-content-openapi.yml
+  - type: Overlay
+    url: overlays/wugen-legacy-content-overlay.yaml
+x-enrichment:
+  date: '2026-08-05'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/wugen-agentic-access.yml
+- type: DomainSecurity
+  url: security/wugen-domain-security.yml
+- type: Authentication
+  url: authentication/wugen-authentication.yml
+- type: Conventions
+  url: conventions/wugen-conventions.yml
+- type: Conformance
+  url: conformance/wugen-conformance.yml
+- type: Lifecycle
+  url: lifecycle/wugen-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/wugen-problem-types.yml
+- type: DataModel
+  url: data-model/wugen-data-model.yml
+- type: Examples
+  url: examples/wugen-examples.yml
+- type: WellKnown
+  url: well-known/wugen-well-known.yml
+- type: LLMsTxt
+  url: llms/wugen-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
 - type: Website
+  url: https://alloteratx.com/
+- type: BlogRSS
+  url: https://alloteratx.com/feed/
+- type: FormerWebsite
+  url: https://wugen.com/
+- type: About
+  url: https://alloteratx.com/about-us/
+- type: Technology
+  url: https://alloteratx.com/science/
+- type: Pipeline
+  url: https://alloteratx.com/pipeline/
+- type: News
+  url: https://alloteratx.com/press-releases/
+- type: Publications
+  url: https://alloteratx.com/scientific-publications/
+- type: Team
+  url: https://alloteratx.com/leadership/
+- type: Board
+  url: https://alloteratx.com/board-of-directors/
+- type: Investors
+  url: https://alloteratx.com/investors/
+- type: Partners
+  url: https://alloteratx.com/partners/
+- type: Careers
+  url: https://alloteratx.com/career-opportunities/
+- type: Support
+  url: https://alloteratx.com/contact-us/
+- type: PrivacyPolicy
+  url: https://alloteratx.com/privacy-notice/
+- type: Accessibility
+  url: https://alloteratx.com/accessibility/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/wugen
+- type: SecondaryMarket
   url: https://forgeglobal.com/wugen_stock/
