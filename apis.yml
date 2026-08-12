@@ -38,58 +38,76 @@ tags:
 - Research
 - Content
 apis:
-- aid: wugen:allotera-content
-  name: Allotera (formerly Wugen) Content API (WordPress REST wp/v2)
-  description: 'The anonymously readable WordPress REST API that alloteratx.com serves at
-    /wp-json/wp/v2 — the company press-release archive (81 posts), corporate and patient-facing
-    pages (18: pipeline, science, clinical trials, expanded access policy, patients, leadership,
-    board of directors, investors, partners, careers), the media library (66 objects), the category
-    taxonomy (10 terms), comments, the type/taxonomy/status discovery documents and a site-wide
-    search endpoint, all as JSON with page/per_page pagination and X-WP-Total / X-WP-TotalPages
-    response headers. This is the CMS content API, not an Allotera product API; the company
-    publishes no OpenAPI for it, so the definition in this repo was derived mechanically from the
-    live route-discovery document at https://alloteratx.com/wp-json/. Write operations exist on
-    these routes but are authentication-gated, as are /wp/v2/users, /wp/v2/settings, /wp/v2/themes
-    and /wp/v2/plugins, which return HTTP 401 anonymously.'
+- aid: wugen:wugen-comments-api
+  name: Wugen Comments API
+  description: The Comments API from Wugen — 2 operation(s) for comments.
   humanURL: https://alloteratx.com/press-releases/
   baseURL: https://alloteratx.com/wp-json/wp/v2
   tags:
-  - Content
-  - News
-  - Press Releases
-  - Publications
-  - Search
-  - Media
+  - Comments
   properties:
   - type: OpenAPI
-    url: openapi/wugen-allotera-content-openapi.yml
-  - type: Overlay
-    url: overlays/wugen-allotera-content-overlay.yaml
-- aid: wugen:legacy-content
-  name: Wugen Legacy Content API (WordPress REST wp/v2)
-  description: 'The anonymously readable WordPress REST API still served from the retired wugen.com
-    brand domain at /wp-json/wp/v2. Although the human-facing wugen.com site was reduced to a single
-    splash page forwarding visitors to alloteratx.com after the July 2026 rename, the underlying
-    WordPress install remains live and continues to serve the complete historical archive as JSON —
-    80 posts (58 press releases, 12 scientific publications, 8 articles, plus careers, clinical and
-    product-development items), 269 media objects and 11 category terms. The archive is therefore
-    still reachable by machine long after it stopped being reachable by navigation. Note that
-    wugen.com answers HTTP 200 with its splash page for every unmatched path — a soft 404 — so path
-    probes against this host must be diffed against a control path before any hit is believed.'
-  humanURL: https://wugen.com/
-  baseURL: https://wugen.com/wp-json/wp/v2
+    url: openapi/wugen-comments-api-openapi.yml
+- aid: wugen:wugen-discovery-api
+  name: Wugen Discovery API
+  description: The Discovery API from Wugen — 7 operation(s) for discovery.
+  humanURL: https://alloteratx.com/press-releases/
+  baseURL: https://alloteratx.com/wp-json/wp/v2
   tags:
-  - Content
-  - Archive
-  - Press Releases
-  - Publications
-  - Search
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/wugen-discovery-api-openapi.yml
+- aid: wugen:wugen-media-api
+  name: Wugen Media API
+  description: The Media API from Wugen — 2 operation(s) for media.
+  humanURL: https://alloteratx.com/press-releases/
+  baseURL: https://alloteratx.com/wp-json/wp/v2
+  tags:
   - Media
   properties:
   - type: OpenAPI
-    url: openapi/wugen-legacy-content-openapi.yml
-  - type: Overlay
-    url: overlays/wugen-legacy-content-overlay.yaml
+    url: openapi/wugen-media-api-openapi.yml
+- aid: wugen:wugen-pages-api
+  name: Wugen Pages API
+  description: The Pages API from Wugen — 2 operation(s) for pages.
+  humanURL: https://alloteratx.com/press-releases/
+  baseURL: https://alloteratx.com/wp-json/wp/v2
+  tags:
+  - Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/wugen-pages-api-openapi.yml
+- aid: wugen:wugen-posts-api
+  name: Wugen Posts API
+  description: The Posts API from Wugen — 2 operation(s) for posts.
+  humanURL: https://alloteratx.com/press-releases/
+  baseURL: https://alloteratx.com/wp-json/wp/v2
+  tags:
+  - Posts
+  properties:
+  - type: OpenAPI
+    url: openapi/wugen-posts-api-openapi.yml
+- aid: wugen:wugen-search-api
+  name: Wugen Search API
+  description: The Search API from Wugen — 1 operation(s) for search.
+  humanURL: https://alloteratx.com/press-releases/
+  baseURL: https://alloteratx.com/wp-json/wp/v2
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/wugen-search-api-openapi.yml
+- aid: wugen:wugen-taxonomy-api
+  name: Wugen Taxonomy API
+  description: The Taxonomy API from Wugen — 4 operation(s) for taxonomy.
+  humanURL: https://alloteratx.com/press-releases/
+  baseURL: https://alloteratx.com/wp-json/wp/v2
+  tags:
+  - Taxonomy
+  properties:
+  - type: OpenAPI
+    url: openapi/wugen-taxonomy-api-openapi.yml
 x-enrichment:
   date: '2026-08-05'
   status: enriched
@@ -101,6 +119,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/wugen-allotera-content-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/wugen-agentic-access.yml
 - type: DomainSecurity
