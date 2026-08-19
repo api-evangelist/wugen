@@ -1,0 +1,826 @@
+{
+  "item": [
+    {
+      "id": "258f5c51-55af-4548-8089-c08e301ef548",
+      "name": "Comments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "da9953ff-b8f1-43d7-b93b-0e7518f30360",
+          "name": "GET /wp/v2/comments",
+          "request": {
+            "name": "GET /wp/v2/comments",
+            "description": {},
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Current page of the collection."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Maximum number of items to be returned in result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Limit results to those matching a string."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to comments published after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "author",
+                  "value": "<integer>",
+                  "description": "Limit result set to comments assigned to specific user IDs. Requires authorization."
+                },
+                {
+                  "disabled": false,
+                  "key": "author",
+                  "value": "<integer>",
+                  "description": "Limit result set to comments assigned to specific user IDs. Requires authorization."
+                },
+                {
+                  "disabled": false,
+                  "key": "author_exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes comments assigned to specific user IDs. Requires authorization."
+                },
+                {
+                  "disabled": false,
+                  "key": "author_exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes comments assigned to specific user IDs. Requires authorization."
+                },
+                {
+                  "disabled": false,
+                  "key": "author_email",
+                  "value": "<email>",
+                  "description": "Limit result set to that from a specific author email. Requires authorization."
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to comments published before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset the result set by a specific number of items."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order sort attribute ascending or descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "date_gmt",
+                  "description": "Sort collection by comment attribute."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "approve",
+                  "description": "Limit result set to comments assigned a specific status. Requires authorization."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "comment",
+                  "description": "Limit result set to comments assigned a specific type. Requires authorization."
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "The password for the post if it is password protected."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99c8b1d6-e6a0-4cfe-aa41-09947e427233",
+              "name": "A page of resources. Total count and page count are returned in the X-WP-Total and X-WP-TotalPages response headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date_gmt"
+                    },
+                    {
+                      "key": "status",
+                      "value": "approve"
+                    },
+                    {
+                      "key": "type",
+                      "value": "comment"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of matching resources.",
+                  "key": "X-WP-Total",
+                  "value": "2994"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages available.",
+                  "key": "X-WP-TotalPages",
+                  "value": "2994"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5383eef8-ce03-48ce-9fdf-8ebbc8238675",
+              "name": "WordPress REST error envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date_gmt"
+                    },
+                    {
+                      "key": "status",
+                      "value": "approve"
+                    },
+                    {
+                      "key": "type",
+                      "value": "comment"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"rest_forbidden\",\n  \"message\": \"Sorry, you are not allowed to do that.\",\n  \"data\": {\n    \"status\": 401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff6c2c74-cea8-45aa-9e10-24ec6016d91c",
+              "name": "WordPress REST error envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date_gmt"
+                    },
+                    {
+                      "key": "status",
+                      "value": "approve"
+                    },
+                    {
+                      "key": "type",
+                      "value": "comment"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"rest_forbidden\",\n  \"message\": \"Sorry, you are not allowed to do that.\",\n  \"data\": {\n    \"status\": 401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e6a4554-6439-4c30-92f7-60c66511a924",
+              "name": "WordPress REST error envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date_gmt"
+                    },
+                    {
+                      "key": "status",
+                      "value": "approve"
+                    },
+                    {
+                      "key": "type",
+                      "value": "comment"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"rest_forbidden\",\n  \"message\": \"Sorry, you are not allowed to do that.\",\n  \"data\": {\n    \"status\": 401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61cf09c2-83b9-4e5d-8f2c-d360ffb30ed5",
+          "name": "GET /wp/v2/comments/{id}",
+          "request": {
+            "name": "GET /wp/v2/comments/{id}",
+            "description": {},
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "comments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "The password for the parent post of the comment (if the post is password protected)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the resource (id)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a069947-daf7-4de4-b6fc-5349c921807a",
+              "name": "A single resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "comments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the resource (id)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53b9511d-70ec-4383-86b9-45265d9f9b27",
+              "name": "WordPress REST error envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "comments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the resource (id)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"rest_forbidden\",\n  \"message\": \"Sorry, you are not allowed to do that.\",\n  \"data\": {\n    \"status\": 401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fb0a979-61a2-41eb-9484-545e65394f93",
+              "name": "WordPress REST error envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "comments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the resource (id)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"rest_forbidden\",\n  \"message\": \"Sorry, you are not allowed to do that.\",\n  \"data\": {\n    \"status\": 401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://alloteratx.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9d0c6932-7bfe-4832-b543-77b33409000b",
+    "name": "Allotera (formerly Wugen) Content API (WordPress REST wp/v2) Comments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Allotera Therapeutics — the company formerly named Wugen — publishes alloteratx.com on WordPress, which exposes the WordPress REST API at https://alloteratx.com/wp-json/. The wp/v2 namespace is anonymously readable and returns the company press-release archive (81 posts), corporate and patient-facing pages (18: pipeline, science, clinical trials, expanded access, leadership, board, investors, partners), the media library (66 items), the category taxonomy (10 terms) and a site-wide search endpoint as JSON.\n\nThis document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://alloteratx.com/wp-json/ on 2026-08-05 — every path, method and parameter below is taken verbatim from that descriptor, and only routes verified to return 200 to an anonymous request are included. Allotera publishes no OpenAPI definition of its own, and this is not a product API: it is the content API the CMS exposes. Write operations exist on these routes but require authentication, as do /wp/v2/users, /wp/v2/settings, /wp/v2/themes and /wp/v2/plugins, which return HTTP 401 anonymously.\n\nContact Support:\n Name: Allotera Therapeutics",
+      "type": "text/plain"
+    }
+  }
+}

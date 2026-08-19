@@ -1,0 +1,232 @@
+{
+  "item": [
+    {
+      "id": "ad718414-d3fd-45c8-ab04-62579ca9d53e",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a73e4650-8bea-48a0-b6a7-bb975fd10812",
+          "name": "GET /wp/v2/search",
+          "request": {
+            "name": "GET /wp/v2/search",
+            "description": {},
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "search"
+              ],
+              "host": [
+                "{{wp-v2-search-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Current page of the collection."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Maximum number of items to be returned in result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Limit results to those matching a string."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "post",
+                  "description": "Limit results to items of an object type."
+                },
+                {
+                  "disabled": false,
+                  "key": "subtype",
+                  "value": "any",
+                  "description": "Limit results to items of one or more object subtypes."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb0a1518-230c-48cf-b5c7-84c7ed42310f",
+              "name": "Discovery document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "search"
+                  ],
+                  "host": [
+                    "{{wp-v2-search-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "post"
+                    },
+                    {
+                      "key": "subtype",
+                      "value": "any"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93082727-9b01-4546-b5f7-8b39566d231a",
+              "name": "WordPress REST error envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "search"
+                  ],
+                  "host": [
+                    "{{wp-v2-search-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "post"
+                    },
+                    {
+                      "key": "subtype",
+                      "value": "any"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"rest_forbidden\",\n  \"message\": \"Sorry, you are not allowed to do that.\",\n  \"data\": {\n    \"status\": 401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://alloteratx.com/wp-json",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://alloteratx.com/wp-json",
+      "key": "wp-v2-search-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "80d7c158-8277-48d2-8981-a8bd74eee34a",
+    "name": "Wugen Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Search across 2 of this provider's published API definitions: wugen-allotera-content-openapi.yml, wugen-legacy-content-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

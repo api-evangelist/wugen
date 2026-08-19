@@ -1,0 +1,35 @@
+{
+  "provider": "wugen",
+  "sources": [
+    "wugen-comments-api-openapi.yml",
+    "wugen-discovery-api-openapi.yml",
+    "wugen-media-api-openapi.yml",
+    "wugen-pages-api-openapi.yml",
+    "wugen-posts-api-openapi.yml",
+    "wugen-search-api-openapi.yml",
+    "wugen-taxonomy-api-openapi.yml"
+  ],
+  "outputs": [
+    "wugen-comments-api-openapi.yml",
+    "wugen-discovery-api-openapi.yml",
+    "wugen-media-api-openapi.yml",
+    "wugen-pages-api-openapi.yml",
+    "wugen-posts-api-openapi.yml",
+    "wugen-search-api-openapi.yml",
+    "wugen-taxonomy-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "wugen-comments-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "wugen-discovery-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "wugen-media-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "wugen-pages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "wugen-posts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "wugen-search-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "wugen-taxonomy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

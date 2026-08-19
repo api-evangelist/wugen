@@ -1,0 +1,337 @@
+openapi: 3.2.0
+info:
+  title: Wugen Discovery API
+  version: wp/v2
+  description: 'Operations tagged Discovery across 2 of this provider''s published API definitions: wugen-allotera-content-openapi.yml, wugen-legacy-content-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://alloteratx.com/wp-json
+  description: Production
+- url: https://wugen.com/wp-json
+  description: Production
+tags:
+- name: Discovery
+paths:
+  /wp/v2:
+    servers:
+    - url: https://alloteratx.com/wp-json
+      description: Production
+    get:
+      operationId: getNamespaceIndex
+      summary: GET /wp/v2
+      tags:
+      - Discovery
+      parameters:
+      - name: namespace
+        in: query
+        required: false
+        schema:
+          type: string
+          default: wp/v2
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          default: view
+      responses:
+        '200':
+          description: Discovery document.
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          $ref: '#/components/responses/Error'
+  /wp/v2/types:
+    servers:
+    - url: https://alloteratx.com/wp-json
+      description: Production
+    get:
+      operationId: getTypes
+      summary: GET /wp/v2/types
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: A page of resources. Total count and page count are returned in the X-WP-Total and X-WP-TotalPages response headers.
+          headers:
+            X-WP-Total:
+              description: Total number of matching resources.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /wp/v2/types/{type}:
+    servers:
+    - url: https://alloteratx.com/wp-json
+      description: Production
+    get:
+      operationId: getType
+      summary: GET /wp/v2/types/{type}
+      tags:
+      - Discovery
+      parameters:
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for the resource (type).
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: A single resource.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /wp/v2/taxonomies:
+    servers:
+    - url: https://alloteratx.com/wp-json
+      description: Production
+    get:
+      operationId: getTaxonomies
+      summary: GET /wp/v2/taxonomies
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Limit results to taxonomies associated with a specific post type.
+      responses:
+        '200':
+          description: A page of resources. Total count and page count are returned in the X-WP-Total and X-WP-TotalPages response headers.
+          headers:
+            X-WP-Total:
+              description: Total number of matching resources.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /wp/v2/taxonomies/{taxonomy}:
+    servers:
+    - url: https://alloteratx.com/wp-json
+      description: Production
+    get:
+      operationId: getTaxonomy
+      summary: GET /wp/v2/taxonomies/{taxonomy}
+      tags:
+      - Discovery
+      parameters:
+      - name: taxonomy
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for the resource (taxonomy).
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: A single resource.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /wp/v2/statuses:
+    servers:
+    - url: https://alloteratx.com/wp-json
+      description: Production
+    get:
+      operationId: getStatuses
+      summary: GET /wp/v2/statuses
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: A page of resources. Total count and page count are returned in the X-WP-Total and X-WP-TotalPages response headers.
+          headers:
+            X-WP-Total:
+              description: Total number of matching resources.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /wp/v2/statuses/{status}:
+    servers:
+    - url: https://alloteratx.com/wp-json
+      description: Production
+    get:
+      operationId: getStatus
+      summary: GET /wp/v2/statuses/{status}
+      tags:
+      - Discovery
+      parameters:
+      - name: status
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for the resource (status).
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: A single resource.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: The WordPress REST API error envelope. This is NOT RFC 9457 application/problem+json; it is served as application/json.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error slug, e.g. rest_no_route.
+        message:
+          type: string
+          description: Human-readable message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code.
+      required:
+      - code
+      - message
+  responses:
+    Error:
+      description: WordPress REST error envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            forbidden:
+              value:
+                code: rest_forbidden
+                message: Sorry, you are not allowed to do that.
+                data:
+                  status: 401
+x-refined-from:
+- wugen-allotera-content-openapi.yml
+- wugen-legacy-content-openapi.yml
