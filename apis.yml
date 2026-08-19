@@ -21,7 +21,7 @@ x-source: harvest:secondary-market
 x-tier: profiled
 x-tier-reason: enrichment-pipeline
 image: https://alloteratx.com/wp-content/uploads/2026/06/Asset-1.svg
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-08-05'
 modified: '2026-08-05'
 tags:
