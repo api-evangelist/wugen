@@ -366,6 +366,20 @@ paths:
         '404':
           $ref: '#/components/responses/Error'
 components:
+  responses:
+    Error:
+      description: WordPress REST error envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            forbidden:
+              value:
+                code: rest_forbidden
+                message: Sorry, you are not allowed to do that.
+                data:
+                  status: 401
   schemas:
     Error:
       type: object
@@ -386,20 +400,6 @@ components:
       required:
       - code
       - message
-  responses:
-    Error:
-      description: WordPress REST error envelope.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            forbidden:
-              value:
-                code: rest_forbidden
-                message: Sorry, you are not allowed to do that.
-                data:
-                  status: 401
 x-refined-from:
 - wugen-allotera-content-openapi.yml
 - wugen-legacy-content-openapi.yml
