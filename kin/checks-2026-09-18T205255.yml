@@ -2,10 +2,11 @@
 kin_checks:
   slug: wugen
   schema_version: 0.22.0
-  scored_at: '2026-09-15'
-  run_ts: 2026-09-15T230249
-  note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.22.0.yml; counts below let you verify that.
+  scored_at: '2026-09-18'
+  run_ts: 2026-09-18T205255
+  note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
+    apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
+    below let you verify that.
   counts:
     total: 136
     earned: 19
@@ -156,56 +157,56 @@ kin_checks:
     status: missed
   - id: contract_present
     status: partial
-    earned: 15.0
+    earned: 5.0
   - id: openapi_3_2
     status: partial
-    earned: 3.75
+    earned: 1.25
     detail: 7 of 7 openapi documents pass
   - id: info_complete
     status: partial
-    earned: 0.43
-    detail: 1 of 7 openapi documents pass
+    earned: 1.0
+    detail: 7 of 7 openapi documents pass
   - id: servers_defined
     status: partial
-    earned: 2.25
+    earned: 0.75
     detail: 7 of 7 openapi documents pass
   - id: servers_resolvable
     status: partial
-    earned: 3.75
+    earned: 1.25
   - id: operations_summary_coverage
     status: partial
-    earned: 4.5
+    earned: 1.5
     detail: 7 of 7 openapi documents pass
   - id: operations_tagged
     status: partial
-    earned: 3.0
+    earned: 1.0
     detail: 7 of 7 openapi documents pass
   - id: operations_operation_ids
     status: partial
-    earned: 3.0
+    earned: 1.0
     detail: 7 of 7 openapi documents pass
   - id: response_coverage
     status: partial
-    earned: 3.75
+    earned: 1.25
     detail: 7 of 7 openapi documents pass
   - id: error_responses_documented
     status: partial
-    earned: 3.0
+    earned: 1.0
     detail: 7 of 7 openapi documents pass
   - id: examples_present
     status: partial
-    earned: 0.75
+    earned: 0.25
   - id: oauth_flows_current
     status: partial
-    earned: 3.0
+    earned: 1.0
     detail: 7 of 7 openapi documents pass
   - id: credentials_not_in_query
     status: partial
-    earned: 2.25
+    earned: 0.75
     detail: 7 of 7 openapi documents pass
   - id: oauth_scopes_enumerated
     status: partial
-    earned: 3.0
+    earned: 1.0
     detail: 7 of 7 openapi documents pass
   - id: conformance_declared
     status: partial
@@ -233,3 +234,33 @@ kin_checks:
     status: partial
     earned: 1.25
     detail: 'authorship: derived'
+  na:
+  - asyncapi_3_x
+  - channels_defined
+  - contract_self_operated
+  - dry_run_mode
+  - fhir_capability_statement
+  - fhir_resource_coverage
+  - finops_mapped
+  - graphql_descriptions
+  - graphql_sdl_present
+  - graphql_type_depth
+  - idempotency
+  - inbound_contract_published
+  - messages_with_schema
+  - os_code_of_conduct
+  - os_contribution_guide
+  - os_releases
+  - os_security_policy
+  - plans_multiple
+  - plans_present
+  - pricing_link
+  - reg_camara_conformance
+  - reg_entitlement_terms
+  - reg_fapi_profile
+  - reg_pci_sca
+  - reg_write_surface
+  - reversibility_documented
+  - security_schemes
+  - server_bindings
+  - sign_up_present
