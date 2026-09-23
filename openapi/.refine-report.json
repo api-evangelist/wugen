@@ -1,13 +1,7 @@
 {
   "provider": "wugen",
   "sources": [
-    "wugen-comments-api-openapi.yml",
-    "wugen-discovery-api-openapi.yml",
-    "wugen-media-api-openapi.yml",
-    "wugen-pages-api-openapi.yml",
-    "wugen-posts-api-openapi.yml",
-    "wugen-search-api-openapi.yml",
-    "wugen-taxonomy-api-openapi.yml"
+    "_ae-authored/wugen-allotera-content-openapi.yml"
   ],
   "outputs": [
     "wugen-comments-api-openapi.yml",
@@ -22,7 +16,19 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wugen-allotera-content-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "_ae-authored/wugen-legacy-content-openapi.yml: archived document superseded by a larger archived document",
+    "wugen-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wugen-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wugen-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wugen-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wugen-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wugen-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wugen-taxonomy-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

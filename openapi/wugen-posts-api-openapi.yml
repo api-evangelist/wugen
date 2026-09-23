@@ -1,20 +1,23 @@
 openapi: 3.2.0
 info:
-  title: Wugen Posts API
+  title: Allotera (formerly Wugen) Content API (WordPress REST…
   version: wp/v2
-  description: 'Operations tagged Posts across 2 of this provider''s published API definitions: wugen-allotera-content-openapi.yml, wugen-legacy-content-openapi.yml. Each path carries the servers of the definition it was published in.'
+  summary: 'Public read surface of alloteratx.com content: press releases, scientific publications, corporate pages, the media library, taxonomies and site search.'
+  description: Allotera Therapeutics — the company formerly named Wugen — publishes alloteratx.com on WordPress, which exposes the WordPress REST API at https://alloteratx.com/wp-json/.
+  contact:
+    name: Allotera Therapeutics
+    url: https://alloteratx.com/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://alloteratx.com/wp-json/
+  x-derived-on: '2026-08-05'
+  x-provider-published: false
 servers:
 - url: https://alloteratx.com/wp-json
-  description: Production
-- url: https://wugen.com/wp-json
   description: Production
 tags:
 - name: Posts
 paths:
   /wp/v2/posts:
-    servers:
-    - url: https://alloteratx.com/wp-json
-      description: Production
     get:
       operationId: getPosts
       summary: GET /wp/v2/posts
@@ -296,9 +299,6 @@ paths:
         '404':
           $ref: '#/components/responses/Error'
   /wp/v2/posts/{id}:
-    servers:
-    - url: https://alloteratx.com/wp-json
-      description: Production
     get:
       operationId: getPost
       summary: GET /wp/v2/posts/{id}
@@ -346,20 +346,6 @@ paths:
         '404':
           $ref: '#/components/responses/Error'
 components:
-  responses:
-    Error:
-      description: WordPress REST error envelope.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            forbidden:
-              value:
-                code: rest_forbidden
-                message: Sorry, you are not allowed to do that.
-                data:
-                  status: 401
   schemas:
     Error:
       type: object
@@ -380,6 +366,17 @@ components:
       required:
       - code
       - message
-x-refined-from:
-- wugen-allotera-content-openapi.yml
-- wugen-legacy-content-openapi.yml
+  responses:
+    Error:
+      description: WordPress REST error envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            forbidden:
+              value:
+                code: rest_forbidden
+                message: Sorry, you are not allowed to do that.
+                data:
+                  status: 401
