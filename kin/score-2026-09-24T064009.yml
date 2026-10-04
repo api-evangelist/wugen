@@ -1,27 +1,25 @@
-# Kin Score artifact — wugen — 2026-08-27T103455
+# Kin Score artifact — wugen — 2026-09-24T064009
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: wugen
-  schema_version: 0.15.1
-  scored_at: '2026-08-27'
-  run_ts: 2026-08-27T103455
-  composite: 32.2
-  band: thin
+  schema_version: 0.22.0
+  scored_at: '2026-09-24'
+  run_ts: 2026-09-24T064009
+  composite: 20.8
+  band: emerging
   facets:
-    discoverability: 85.2
-    contract_quality: 44.4
-    governance: 16.7
+    discoverability: 59.3
+    contract_quality: 7.3
+    contract_governance: 4.5
     operational_transparency: 0.0
-    developer_ergonomics: 18.5
-    commercial_clarity: 28.6
-    contract_governance: 16.7
+    developer_ergonomics: 28.0
     access_clarity: 28.6
   agent_readiness:
-    score: 29.2
-    band: agent-ready
+    score: 14.2
+    band: agent-aware
     dimensions:
-      spec_presence: true
+      spec_presence: false
       agentic_access: derived
       reversibility_documented: na
       mcp_server: false
@@ -51,7 +49,7 @@ kin_score:
     agentic_access: derived
     conformance: derived
     contracts:
-      total: 7
-      derived: 1
-      coverage: 14.3
+      total: 9
+      derived: 9
+      coverage: 100.0
       callable: 100.0
