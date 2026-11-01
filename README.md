@@ -64,5 +64,111 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Wugen is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/wugen_stock/
+Wugen, Inc. is a St. Louis, Missouri clinical-stage cell-therapy company founded in 2018 out of Washington University in St. Louis that develops off-the-shelf, allogeneic CAR-T and memory NK cell therapies for blood cancers, using CRISPR deletion of the T-cell receptor so cells from healthy donors can be given without graft-versus-host disease. In July 2026 the company renamed itself Allotera Therapeutics, Inc. and moved to alloteratx.com, closing a $35M financing that brought total capital raised to roughly $150M on top of its $115M Series C; its lead program, soficabtagene geleucel (sofi-cel, formerly WU-CART-007), is a CD7-targeted allogeneic CAR-T in a global pivotal study for relapsed or refractory T-cell acute lymphoblastic leukemia and T-cell lymphoblastic lymphoma, holds FDA Breakthrough Therapy designation, and was selected for the FDA CMC Development and Readiness Pilot Program. Wugen/Allotera publishes no product or developer API, no OpenAPI, no llms.txt and no agent card. The only machine-readable surface either domain exposes is the WordPress REST API (wp/v2), anonymously readable on both the current alloteratx.com site and the retired wugen.com brand domain, which still serves the complete historical press-release and scientific-publication archive as JSON even though its human-facing site is now a single splash page.
+
+**Areas:** Company · Biotechnology · Cell Therapy · Oncology · Life Sciences · Pharmaceuticals · Clinical Trials · CAR-T · CRISPR · Immunotherapy · Research · Content
+
+## Wugen on APIs.io
+
+Everything profiled for Wugen is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/wugen/](https://apis.io/providers/wugen/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Wugen Website (WordPress REST)](https://apis.io/apis/wugen/alloteratx-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the Wugen website at alloteratx.com: the route index of the site's content management system, catalogued as one…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Wugen Agentic Access](https://apis.io/agentic-access/wugen/wugen-agentic-access/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/wugen/](https://apis.io/collections/wugen/open-wugen-comments-api/)
+- [Moved to /providers/wugen/](https://apis.io/collections/wugen/open-wugen-discovery-api/)
+- [Moved to /providers/wugen/](https://apis.io/collections/wugen/open-wugen-media-api/)
+- [Moved to /providers/wugen/](https://apis.io/collections/wugen/open-wugen-pages-api/)
+- [Moved to /providers/wugen/](https://apis.io/collections/wugen/open-wugen-posts-api/)
+- [Moved to /providers/wugen/](https://apis.io/collections/wugen/open-wugen-search-api/)
+- [Moved to /providers/wugen/](https://apis.io/collections/wugen/open-wugen-taxonomy-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Wugen Allotera Content Overlay](https://apis.io/overlays/wugen/wugen-allotera-content-overlay/)
+- [Wugen Legacy Content Overlay](https://apis.io/overlays/wugen/wugen-legacy-content-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Wugen Authentication](https://apis.io/security/wugen/wugen-authentication/)
+- [Wugen Domain Security](https://apis.io/security/wugen/wugen-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://alloteratx.com/)
+- [Support](https://alloteratx.com/contact-us/)
+- [Privacy policy](https://alloteratx.com/privacy-notice/)
+
+## API Evangelist rating
+
+**Kin Score 16.5** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 58.0 |
+| Contract quality | 7.3 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 28.0 |
+| Access clarity | 10.5 |
+
+**Agent readiness 12.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.4** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/wugen/](https://apis.io/providers/wugen/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Wugen: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/wugen/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
